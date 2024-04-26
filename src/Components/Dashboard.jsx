@@ -19,7 +19,8 @@ export default function Dashboard({wedData}){
     }
     
     useEffect(()=>{
-        setdashDetails({...dashDetails,...temp})
+        setdashDetails({...dashDetails,...temp});
+        // <Redirect to="/" />
         console.log(dashDetails)
         
     }, [wedData])
@@ -37,7 +38,8 @@ export default function Dashboard({wedData}){
                     <div className="content-header">
                         <h3>Wedding Details</h3>
                         {/* <Link to="/WeddingDetails"></Link> */}
-                        <button className="btn btn-primary">Edit Wedding Details</button>
+                        <Link to="/wedding-details"><button className="rounded p-1 w-100 bg-primary">Edit Wedding Details</button></Link>
+                        
                     </div>
                     <div className="content-cards">
                         <div className="box">

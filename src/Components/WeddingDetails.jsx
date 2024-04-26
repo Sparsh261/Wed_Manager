@@ -1,34 +1,53 @@
-import React, {useState} from 'react'
+import React, { useState,useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import './WeddingDetails.css'
+import { Redirect } from 'react-router-dom';
 import Dashboard from './Dashboard'
 
 
-export default function WeddingDetail({wedDetails}) {
+export default function WeddingDetail({ wedDetails }) {
 
-    const [weddingDetails, setweddingDetails] = useState({Name:"", gender:"", Your_Partners_First_Name:"", Budget:0, Date:0,  Location:"", Guests:0});
+    const [weddingDetails, setweddingDetails] = useState({ Name: "", gender: "", Your_Partners_First_Name: "", Budget: 0, Date: 0, Location: "", Guests: 0 });
 
     const chngValues = (e) => {
-        const {name,value} = e.target;
-        setweddingDetails({...weddingDetails, [name]:value})
+        const { name, value } = e.target;
+        setweddingDetails({ ...weddingDetails, [name]: value })
 
     }
-    
-    function updateValues(e){
+
+    // const button = document.getElementsByClassName("submit-button");
+    // button[0].addEventListener('click',updateValues)
+
+    function updateValues(e) {
         // setweddingDetails({Name:"", gender:" ", Your_Partners_First_Name:" ", Budget:0, Date:0,  Location:" ", Guests:50});
         e.preventDefault();
-        wedDetails(weddingDetails)
+        // <Redirect to="/" />
+        wedDetails(weddingDetails);
+        console.log("hi")
+        
     }
 
+    useEffect(() =>{
+        const  items = JSON.parse(localStorage.getItem("MyDetails"));
+        if(items){ setweddingDetails(items);}
+      },[])
+    
+      useEffect(() =>{
+        localStorage.setItem("MyDetails", JSON.stringify(weddingDetails))
+      },[weddingDetails])
+
+
+    
     return (
         <>
             <div id='container'>
 
                 <h2>Wedding Details</h2>
 
-                <form id='details' >
+                <form id='details' onSubmit={updateValues} >
 
                     <h4>Your Name</h4>
-                    <input type="text" placeholder='Name' name="Name"  onChange={chngValues} />
+                    <input type="text" placeholder='Name' name="Name" onChange={chngValues} />
 
                     <h4>Type</h4>
                     <select name="gender" id="gender" onChange={chngValues} >
@@ -37,21 +56,21 @@ export default function WeddingDetail({wedDetails}) {
                     </select>
 
                     <h4>Your Partner's First Name</h4>
-                    <input type="text" placeholder=" Your Partner's First Name " name="Your Partner's First Name"  onChange={chngValues}  />
+                    <input type="text" placeholder=" Your Partner's First Name " name="Your Partner's First Name" onChange={chngValues} />
 
                     <h4>Estimated Budget</h4>
                     <input type="number" placeholder='Budget' name="Budget" onChange={chngValues} />
 
                     <h4>Date of Wedding</h4>
-                    <input type="date" placeholder='Date' name="Date" onChange={chngValues}  />
+                    <input type="date" placeholder='Date' name="Date" onChange={chngValues} />
 
                     <h4>Location</h4>
-                    <input type="text" placeholder='Location' name="Location"  onChange={chngValues} />
+                    <input type="text" placeholder='Location' name="Location" onChange={chngValues} />
 
                     <h4>Guests</h4>
-                    <input type="number" placeholder='No. of Guests' name="Guests"  onChange={chngValues} />
+                    <input type="number" placeholder='No. of Guests' name="Guests" onChange={chngValues} />
 
-                    <button className="btn btn-primary" onClick={updateValues} >Update</button>
+                    <Link to="/"><button className="btn btn-primary submit-button" >Update</button></Link>
 
                 </form>
 
