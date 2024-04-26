@@ -12,7 +12,7 @@ function App() {
 
 
   function wedDetails(wedDetail){
-    console.log(wedDetail)
+    // console.log(wedDetail)
     setwedData([...wedData, wedDetail])
     console.log(wedData)
   }

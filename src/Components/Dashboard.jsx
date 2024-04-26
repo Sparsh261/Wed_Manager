@@ -6,25 +6,28 @@ import './Dashboard.css'
 
 export default function Dashboard({wedData}){
 
-    // console.log(typeof(wedData[0]));
+    // console.log(wedData[0]);
+    // let tempWedDetails = {...wedData[0]}
+    // console.log(temp);
+  
     
-    // const [dashDetails, setdashDetails] = useState({ 
-    //                                                     Guests:0, 
-    //                                                     Days_to_Go : 0, 
-    //                                                     Budget : 0, 
-    //                                                     Guests_invited : 0 
-    //                                                 })
+    const [dashDetails, setdashDetails] = useState({Guests:0, Date:0,Budget:0,Guests_invited:0});
 
-
-    const [dashDetails, setdashDetails] = useState([]);
-    
+    let temp = {};
+    for(let i = 0; i < wedData.length; i++){
+        temp = {temp,...wedData[i]}
+    }
     
     useEffect(()=>{
-        setdashDetails([...dashDetails, wedData])
-        // console.log(obj["Name"])
+        setdashDetails({...dashDetails,...temp})
+        console.log(dashDetails)
         
     }, [wedData])
     
+    let d = new Date();
+    let d1 = new Date(dashDetails.Date);
+    console.log(Date.parse(d))
+    console.log(Date.parse(d1))
     
     return(
         <>
@@ -39,19 +42,19 @@ export default function Dashboard({wedData}){
                     <div className="content-cards">
                         <div className="box">
                             <p>Guests</p>
-                            {/* <p>{dashDetails[1].Guests == 'Ram'}</p> */}
+                            <p>{dashDetails.Guests}</p>
                         </div>
                         <div className="box">
                             <p>Days to Go</p>
-                            <p></p>
+                            <p>{Math.round((Date.parse(d1)-Date.parse(d))/(1000*60*60*24))==-19839?0:Math.round((Date.parse(d1)-Date.parse(d))/(1000*60*60*24))}</p>
                         </div>
                         <div className="box">
                             <p>Budget</p>
-                            <p></p>
+                            <p>{dashDetails.Budget}</p>
                         </div>
                         <div className="box">
                             <p>Guests invited</p>
-                            <p></p>
+                            <p>{dashDetails.Guests}</p>
                         </div>
                     </div>
 

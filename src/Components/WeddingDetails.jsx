@@ -5,7 +5,7 @@ import Dashboard from './Dashboard'
 
 export default function WeddingDetail({wedDetails}) {
 
-    const [weddingDetails, setweddingDetails] = useState({Name:" ", gender:" ", "Your Partner's First Name":" ", Budget:0, Date:0,  Location:" ", Guests:0});
+    const [weddingDetails, setweddingDetails] = useState({Name:"", gender:"", Your_Partners_First_Name:"", Budget:0, Date:0,  Location:"", Guests:0});
 
     const chngValues = (e) => {
         const {name,value} = e.target;
@@ -14,13 +14,10 @@ export default function WeddingDetail({wedDetails}) {
     }
     
     function updateValues(e){
+        // setweddingDetails({Name:"", gender:" ", Your_Partners_First_Name:" ", Budget:0, Date:0,  Location:" ", Guests:50});
         e.preventDefault();
         wedDetails(weddingDetails)
-        
     }
-
-
-
 
     return (
         <>
@@ -28,7 +25,7 @@ export default function WeddingDetail({wedDetails}) {
 
                 <h2>Wedding Details</h2>
 
-                <form id='details' onSubmit={updateValues} >
+                <form id='details' >
 
                     <h4>Your Name</h4>
                     <input type="text" placeholder='Name' name="Name"  onChange={chngValues} />
@@ -54,7 +51,7 @@ export default function WeddingDetail({wedDetails}) {
                     <h4>Guests</h4>
                     <input type="number" placeholder='No. of Guests' name="Guests"  onChange={chngValues} />
 
-                    <button className="btn btn-primary">Update</button>
+                    <button className="btn btn-primary" onClick={updateValues} >Update</button>
 
                 </form>
 
