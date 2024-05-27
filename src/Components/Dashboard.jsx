@@ -33,7 +33,7 @@ export default function Dashboard({wedData}){
     return(
         <>
             <div className="dashboard container">
-                <h1>Dashboard</h1>
+                <h1>Dashboar</h1>
                 <div className="container content">
                     <div className="content-header">
                         <h3>Wedding Details</h3>
