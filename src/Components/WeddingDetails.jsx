@@ -1,30 +1,24 @@
-import React, { useState,useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState,useEffect} from 'react'
+// import { Redirect} from 'react-router-dom'
 import './WeddingDetails.css'
-import { Redirect } from 'react-router-dom';
+// import {useNavigate} from 'react-router-dom'
 import Dashboard from './Dashboard'
 
 
 export default function WeddingDetail({ wedDetails }) {
-
+    // const navigate = useNavigate();
     const [weddingDetails, setweddingDetails] = useState({ Name: "", gender: "", Your_Partners_First_Name: "", Budget: 0, Date: 0, Location: "", Guests: 0 });
 
     const chngValues = (e) => {
         const { name, value } = e.target;
         setweddingDetails({ ...weddingDetails, [name]: value })
-
     }
 
-    // const button = document.getElementsByClassName("submit-button");
-    // button[0].addEventListener('click',updateValues)
-
     function updateValues(e) {
-        // setweddingDetails({Name:"", gender:" ", Your_Partners_First_Name:" ", Budget:0, Date:0,  Location:" ", Guests:50});
         e.preventDefault();
-        // <Redirect to="/" />
         wedDetails(weddingDetails);
-        console.log("hi")
-        
+        // <Redirect to="/" />;
+        // navigate('/');
     }
 
     useEffect(() =>{
@@ -70,7 +64,8 @@ export default function WeddingDetail({ wedDetails }) {
                     <h4>Guests</h4>
                     <input type="number" placeholder='No. of Guests' name="Guests" onChange={chngValues} />
 
-                    <Link to="/"><button className="btn btn-primary submit-button" >Update</button></Link>
+                    {/* <Link to="/"><button className="btn btn-primary submit-button" >Update</button></Link> */}
+                    <button className="btn btn-primary submit-button" >Update</button>
 
                 </form>
 

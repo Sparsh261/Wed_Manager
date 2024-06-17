@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import {Link,Route} from 'react-router-dom'
 import { Router } from 'react-router-dom';
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
 
 
 
