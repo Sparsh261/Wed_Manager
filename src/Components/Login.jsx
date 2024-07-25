@@ -1,19 +1,20 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-const  url =  require('../../../URL');
+import url from '../../url'
+import { useHistory } from "react-router-dom";
 
 
 
 export default function Login(){
-
-    const navigate = useNavigate();
+    
+    const history = useHistory();
 
     const [userEmail, setUserEmail] = useState()
     const [userPassword, setUserPassword] = useState()
 
     const userlogin = async (e) => {
         e.preventDefault();
-        const res = await fetch(`${url.default.url}/users/login`, {
+        const res = await fetch(`${url.url}/users/login`, {
             method: 'POST',
             body: JSON.stringify({
                 "email": e.target[0].value,
@@ -27,7 +28,7 @@ export default function Login(){
         const data = await res.json();
         if (data.status === "true") {
             localStorage.setItem("authTokens", data.authToken)
-            navigate('/');
+            history.push("/");
 
         }
         else alert(data.msg)
@@ -57,6 +58,3 @@ export default function Login(){
         </>
     )
 }
-
-
-// export default Login

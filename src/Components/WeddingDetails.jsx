@@ -1,6 +1,6 @@
 import React, { useState,useEffect} from 'react'
 import './WeddingDetails.css'
-import Dashboard from './Dashboard'
+import url from '../../url'
 
 
 export default function WeddingDetail({ wedDetails }) {
@@ -11,20 +11,30 @@ export default function WeddingDetail({ wedDetails }) {
         setweddingDetails({ ...weddingDetails, [name]: value })
     }
 
-    function updateValues(e) {
+    async function updateValues(e) {
+
         e.preventDefault();
         wedDetails(weddingDetails);
-        // console.log(wedDetails)
+
+        // console.log(weddingDetails)
+
+        const res = await fetch(`${url.url}/users/update`, {
+            method: 'POST',
+            body: JSON.stringify(weddingDetails),
+            headers: {
+                "Content-Type": "application/json"
+            },
+        })
     }
 
-    useEffect(() =>{
-        const  items = JSON.parse(localStorage.getItem("MyDetails"));
-        if(items){ setweddingDetails(items);}
-      },[])
+    // useEffect(() =>{
+    //     const  items = JSON.parse(localStorage.getItem("MyDetails"));
+    //     if(items){ setweddingDetails(items);}
+    //   },[])
     
-      useEffect(() =>{
-        localStorage.setItem("MyDetails", JSON.stringify(weddingDetails))
-      },[weddingDetails])
+    //   useEffect(() =>{
+    //     localStorage.setItem("MyDetails", JSON.stringify(weddingDetails))
+    //   },[weddingDetails])
 
 
     
