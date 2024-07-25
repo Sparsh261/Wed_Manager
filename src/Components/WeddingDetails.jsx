@@ -1,12 +1,9 @@
 import React, { useState,useEffect} from 'react'
-// import { Redirect} from 'react-router-dom'
 import './WeddingDetails.css'
-// import {useNavigate} from 'react-router-dom'
 import Dashboard from './Dashboard'
 
 
 export default function WeddingDetail({ wedDetails }) {
-    // const navigate = useNavigate();
     const [weddingDetails, setweddingDetails] = useState({ Name: "", gender: "", Your_Partners_First_Name: "", Budget: 0, Date: 0, Location: "", Guests: 0 });
 
     const chngValues = (e) => {
@@ -17,8 +14,7 @@ export default function WeddingDetail({ wedDetails }) {
     function updateValues(e) {
         e.preventDefault();
         wedDetails(weddingDetails);
-        // <Redirect to="/" />;
-        // navigate('/');
+        // console.log(wedDetails)
     }
 
     useEffect(() =>{

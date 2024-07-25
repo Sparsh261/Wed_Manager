@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import {BrowserRouter , Switch, Route} from 'react-router-dom';
-import Navbar from './Components/Navbar'
-import WeddingDetail from './Components/WeddingDetails'
-import Dashboard from './Components/Dashboard'
-import GuestList from './Components/GuestList'
-import ToDo from './Components/ToDo'
+import Navbar from './Components/Navbar';
+import WeddingDetail from './Components/WeddingDetails';
+import Dashboard from './Components/Dashboard';
+import GuestList from './Components/GuestList';
+import ToDo from './Components/ToDo';
+// import Login from './Components/Login';
+import Signup from './Components/Signup';
 
 
 function App() {
@@ -34,7 +36,8 @@ function App() {
                 <Route path="/wedding-details" exact render={(props)=>( <WeddingDetail {...props} wedDetails={wedDetails}/>)} />
                 <Route path="/guest-list" exact render={()=>( <GuestList/>)} />
                 <Route path="/todo-list" exact render={()=>( <ToDo/>)} />
-                {/* <Route path="/todo-list" elemeant={<ToDo />} /> */}
+                <Route path="/signup" exact render={()=>( <Signup/>)}/>
+                {/* <Route path="/login" exact render={()=>( <Login/>)}/> */}
             </Switch>
          </BrowserRouter>
 
